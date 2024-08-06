@@ -9,13 +9,13 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 
 import java.net.URL;
-import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class MainController implements Initializable {
+    CalendarHelper calendarHelper = new CalendarHelper();
     // Current working date
     public int currentYear;
     public int currentMonth;
@@ -28,6 +28,7 @@ public class MainController implements Initializable {
     private Label ErrorLabel;
     @FXML
     private GridPane calendarGridId;
+    // Month labels and lookup dict
     private final String[] months = {"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
     private final Map<String, Integer> monthNumbers = new HashMap<>();
 
@@ -47,13 +48,10 @@ public class MainController implements Initializable {
         monthNumbers.put("November", 11);
         monthNumbers.put("December", 12);
 
-        // Get current date to initialize calendar
-        LocalDate currentDate = LocalDate.now();
-        currentMonth = currentDate.getMonthValue();
-        currentYear = currentDate.getYear();
-        // Update UI
-        String monthString = String.valueOf(currentDate.getMonth());
-        MonthChoiceBox.setValue(monthString.charAt(0) + monthString.substring(1).toLowerCase());
+        // Initialize calendar with current date
+        currentMonth = calendarHelper.gerCurrentMonth();
+        MonthChoiceBox.setValue(calendarHelper.getCurrentMonthName());
+        currentYear = calendarHelper.getCurrentYear();
         YearField.setText(String.valueOf(currentYear));
 
         // Set month choice box options

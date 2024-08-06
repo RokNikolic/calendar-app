@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="TOP_CENTER" prefHeight="600.0" prefWidth="840.0" styleClass="bg-success-subtle" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.roknikolic.calendarapp.MainController">
+<VBox alignment="TOP_CENTER" prefHeight="720.0" prefWidth="1280.0" styleClass="bg-success-subtle" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.roknikolic.calendarapp.MainController">
    <children>
       <Label text="Calendar" textAlignment="CENTER">
          <font>
