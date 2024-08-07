@@ -16,7 +16,7 @@ import java.util.ResourceBundle;
 
 public class MainController implements Initializable {
     CalendarHelper calendarHelper = new CalendarHelper();
-    // Current working date
+    // Current working calendar month and year
     public int currentYear;
     public int currentMonth;
     // UI components
@@ -57,21 +57,31 @@ public class MainController implements Initializable {
         // Set month choice box options
         MonthChoiceBox.getItems().addAll(months);
         MonthChoiceBox.setOnAction(this::getMonth);
+
+        // Display initial calendar
+        updateCalendar();
+    }
+    //TODO
+    public void updateCalendar() {
+        int firstDay = calendarHelper.getFirstDayOfMonth(currentMonth, currentYear);
+        int numOfDays = calendarHelper.numOfDaysInMonth(currentMonth, currentYear);
     }
     public void getMonth(ActionEvent event) {
+        // Updates calendar with chosen month
         String month = MonthChoiceBox.getValue();
         currentMonth = monthNumbers.get(month);
-        System.out.println(currentMonth);
+        updateCalendar();
     }
     public void getYear() {
+        // Updates calendar with chosen year
         String year = YearField.getText();
         if (Objects.equals(year, "")) {
             ErrorLabel.setText("Please enter a year");
         }
         try {
             currentYear = Integer.parseInt(year);
-            System.out.println(currentYear);
             ErrorLabel.setText("");
+            updateCalendar();
         } catch (NumberFormatException err) {
             ErrorLabel.setText("Please enter a valid year");
         }
