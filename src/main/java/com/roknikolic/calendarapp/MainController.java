@@ -6,15 +6,14 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.paint.Color;
 
 import java.net.URL;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Objects;
-import java.util.ResourceBundle;
+import java.util.*;
 
 public class MainController implements Initializable {
     CalendarHelper calendarHelper = new CalendarHelper();
+    FileReadHelper fileReadHelper = new FileReadHelper();
     // Currently displayed calendar month and year
     private int currentYear;
     private int currentMonth;
@@ -100,6 +99,8 @@ public class MainController implements Initializable {
     private final String[] months = {"January", "February", "March", "April", "May", "June",
             "July", "August", "September", "October", "November", "December"};
     private final Map<String, Integer> monthNumbers = new HashMap<>();
+    private final Map<String, Boolean> holidayDates = new HashMap<>();
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         // Create months dictionary
@@ -133,6 +134,14 @@ public class MainController implements Initializable {
                 grid21, grid22, grid23, grid24, grid25, grid26, grid27,
                 grid28, grid29, grid30, grid31, grid32, grid33, grid34};
 
+        // Read holidays
+        String filePath = "holidays.txt";
+        List<String> lines = fileReadHelper.readAllLines(filePath);
+        for (String holiday : lines) {
+            String[] dateAndBool = holiday.split(":");
+            holidayDates.put(dateAndBool[0], Boolean.valueOf(dateAndBool[1]));
+        }
+
         // Display initial calendar
         updateCalendar();
     }
@@ -140,11 +149,22 @@ public class MainController implements Initializable {
         System.out.printf("Updating calendar to month: %d, year: %d \n", currentMonth, currentYear);
         int firstDay = calendarHelper.getFirstDayOfMonth(currentMonth, currentYear);
         int numOfDays = calendarHelper.numOfDaysInMonth(currentMonth, currentYear);
+        String stringMonth = String.valueOf(currentMonth);
+        String stringYear = String.valueOf(currentYear);
 
         // Loop over cells and fill in the ones that are needed for the current month
         for (int i = 0; i < gridArray.length; i++) {
             if ((i >= firstDay) && ((i - firstDay) < numOfDays)) {
-                gridArray[i].setText(String.valueOf(i - (firstDay - 1)));
+                // Convert the loop variable to a date number
+                int dayNumber = i - (firstDay - 1);
+                // Check if any date is a holiday
+                String stringDay = String.valueOf(dayNumber);
+                String date = String.join("-", stringDay, stringMonth, stringYear);
+                //TODO
+                if (holidayDates.containsKey(date)) {
+                    gridArray[i].setTextFill(Color.color(0, 1, 0));
+                }
+                gridArray[i].setText(String.valueOf(dayNumber));
             } else {
                 gridArray[i].setText("");
             }
@@ -166,7 +186,7 @@ public class MainController implements Initializable {
             currentYear = Integer.parseInt(year);
             ErrorLabel.setText("");
             updateCalendar();
-        } catch (NumberFormatException error) {
+        } catch (NumberFormatException ex) {
             ErrorLabel.setText("Please enter a valid year");
         }
     }
