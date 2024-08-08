@@ -15,7 +15,6 @@ public class CalendarHelper {
         return monthString.charAt(0) + monthString.substring(1).toLowerCase();
     }
     public boolean isLeapYear(int year) {
-        // Checks if a given year is a leap year
         if (year % 400 == 0) {
             return true;
         } else if (year % 100 == 0) {
@@ -36,18 +35,17 @@ public class CalendarHelper {
 
     }
     public int getWeekDayForDate(int day, int month, int year) {
-        // Zeller's congruence for the Gregorian calendar
+        // Zeller's congruence for the Gregorian calendar, returns what day of the week a day is
         if (month < 3) {
             year--;
             month += 12;
         }
         // Simplified formula
         int dayOfTheWeek = (day + ((13 * (month + 1)) / 5) + year + (year / 4) - (year / 100) + (year / 400)) % 7;
-        // Returns numbers from 1 to 7 for Monday to Sunday
-        return ((dayOfTheWeek + 5) % 7) + 1;
+        // Returns numbers from 0 to 6 for Monday to Sunday
+        return ((dayOfTheWeek + 5) % 7);
     }
     public int getFirstDayOfMonth(int month, int year) {
-        // Gets the first day of a given month
         return getWeekDayForDate(1, month, year);
     }
 }

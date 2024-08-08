@@ -49,7 +49,7 @@
          </children>
       </VBox>
       <Separator prefWidth="200.0" />
-      <GridPane fx:id="calendarGridId" gridLinesVisible="true" hgap="1.0" vgap="1.0">
+      <GridPane gridLinesVisible="true" hgap="1.0" prefHeight="480.0" vgap="1.0">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -116,7 +116,287 @@
                   <Insets bottom="2.0" left="5.0" right="2.0" top="2.0" />
                </padding>
             </Label>
-            <Label text="Sunday" GridPane.columnIndex="6">
+            <Label text="Sunday" textFill="#4940ff" GridPane.columnIndex="6">
+               <font>
+                  <Font size="20.0" />
+               </font>
+               <padding>
+                  <Insets bottom="2.0" left="5.0" right="2.0" top="2.0" />
+               </padding>
+            </Label>
+            <Label fx:id="grid0" text="00" GridPane.rowIndex="1">
+               <font>
+                  <Font size="20.0" />
+               </font>
+               <padding>
+                  <Insets bottom="2.0" left="5.0" right="2.0" top="2.0" />
+               </padding>
+            </Label>
+            <Label fx:id="grid1" text="01" GridPane.columnIndex="1" GridPane.rowIndex="1">
+               <font>
+                  <Font size="20.0" />
+               </font>
+               <padding>
+                  <Insets bottom="2.0" left="5.0" right="2.0" top="2.0" />
+               </padding>
+            </Label>
+            <Label fx:id="grid2" text="02" GridPane.columnIndex="2" GridPane.rowIndex="1">
+               <font>
+                  <Font size="20.0" />
+               </font>
+               <padding>
+                  <Insets bottom="2.0" left="5.0" right="2.0" top="2.0" />
+               </padding>
+            </Label>
+            <Label fx:id="grid3" text="03" GridPane.columnIndex="3" GridPane.rowIndex="1">
+               <font>
+                  <Font size="20.0" />
+               </font>
+               <padding>
+                  <Insets bottom="2.0" left="5.0" right="2.0" top="2.0" />
+               </padding>
+            </Label>
+            <Label fx:id="grid4" text="04" GridPane.columnIndex="4" GridPane.rowIndex="1">
+               <font>
+                  <Font size="20.0" />
+               </font>
+               <padding>
+                  <Insets bottom="2.0" left="5.0" right="2.0" top="2.0" />
+               </padding>
+            </Label>
+            <Label fx:id="grid5" text="05" GridPane.columnIndex="5" GridPane.rowIndex="1">
+               <font>
+                  <Font size="20.0" />
+               </font>
+               <padding>
+                  <Insets bottom="2.0" left="5.0" right="2.0" top="2.0" />
+               </padding>
+            </Label>
+            <Label fx:id="grid6" text="06" textFill="#4940ff" GridPane.columnIndex="6" GridPane.rowIndex="1">
+               <font>
+                  <Font size="20.0" />
+               </font>
+               <padding>
+                  <Insets bottom="2.0" left="5.0" right="2.0" top="2.0" />
+               </padding>
+            </Label>
+            <Label fx:id="grid7" text="10" GridPane.rowIndex="2">
+               <font>
+                  <Font size="20.0" />
+               </font>
+               <padding>
+                  <Insets bottom="2.0" left="5.0" right="2.0" top="2.0" />
+               </padding>
+            </Label>
+            <Label fx:id="grid8" text="11" GridPane.columnIndex="1" GridPane.rowIndex="2">
+               <font>
+                  <Font size="20.0" />
+               </font>
+               <padding>
+                  <Insets bottom="2.0" left="5.0" right="2.0" top="2.0" />
+               </padding>
+            </Label>
+            <Label fx:id="grid9" text="12" GridPane.columnIndex="2" GridPane.rowIndex="2">
+               <font>
+                  <Font size="20.0" />
+               </font>
+               <padding>
+                  <Insets bottom="2.0" left="5.0" right="2.0" top="2.0" />
+               </padding>
+            </Label>
+            <Label fx:id="grid10" text="13" GridPane.columnIndex="3" GridPane.rowIndex="2">
+               <font>
+                  <Font size="20.0" />
+               </font>
+               <padding>
+                  <Insets bottom="2.0" left="5.0" right="2.0" top="2.0" />
+               </padding>
+            </Label>
+            <Label fx:id="grid11" text="14" GridPane.columnIndex="4" GridPane.rowIndex="2">
+               <font>
+                  <Font size="20.0" />
+               </font>
+               <padding>
+                  <Insets bottom="2.0" left="5.0" right="2.0" top="2.0" />
+               </padding>
+            </Label>
+            <Label fx:id="grid12" text="15" GridPane.columnIndex="5" GridPane.rowIndex="2">
+               <font>
+                  <Font size="20.0" />
+               </font>
+               <padding>
+                  <Insets bottom="2.0" left="5.0" right="2.0" top="2.0" />
+               </padding>
+            </Label>
+            <Label fx:id="grid13" text="16" textFill="#4940ff" GridPane.columnIndex="6" GridPane.rowIndex="2">
+               <font>
+                  <Font size="20.0" />
+               </font>
+               <padding>
+                  <Insets bottom="2.0" left="5.0" right="2.0" top="2.0" />
+               </padding>
+            </Label>
+            <Label fx:id="grid14" text="20" GridPane.rowIndex="3">
+               <font>
+                  <Font size="20.0" />
+               </font>
+               <padding>
+                  <Insets bottom="2.0" left="5.0" right="2.0" top="2.0" />
+               </padding>
+            </Label>
+            <Label fx:id="grid15" text="21" GridPane.columnIndex="1" GridPane.rowIndex="3">
+               <font>
+                  <Font size="20.0" />
+               </font>
+               <padding>
+                  <Insets bottom="2.0" left="5.0" right="2.0" top="2.0" />
+               </padding>
+            </Label>
+            <Label fx:id="grid16" text="22" GridPane.columnIndex="2" GridPane.rowIndex="3">
+               <font>
+                  <Font size="20.0" />
+               </font>
+               <padding>
+                  <Insets bottom="2.0" left="5.0" right="2.0" top="2.0" />
+               </padding>
+            </Label>
+            <Label fx:id="grid17" text="23" GridPane.columnIndex="3" GridPane.rowIndex="3">
+               <font>
+                  <Font size="20.0" />
+               </font>
+               <padding>
+                  <Insets bottom="2.0" left="5.0" right="2.0" top="2.0" />
+               </padding>
+            </Label>
+            <Label fx:id="grid18" text="24" GridPane.columnIndex="4" GridPane.rowIndex="3">
+               <font>
+                  <Font size="20.0" />
+               </font>
+               <padding>
+                  <Insets bottom="2.0" left="5.0" right="2.0" top="2.0" />
+               </padding>
+            </Label>
+            <Label fx:id="grid19" text="25" GridPane.columnIndex="5" GridPane.rowIndex="3">
+               <font>
+                  <Font size="20.0" />
+               </font>
+               <padding>
+                  <Insets bottom="2.0" left="5.0" right="2.0" top="2.0" />
+               </padding>
+            </Label>
+            <Label fx:id="grid20" text="26" textFill="#4940ff" GridPane.columnIndex="6" GridPane.rowIndex="3">
+               <font>
+                  <Font size="20.0" />
+               </font>
+               <padding>
+                  <Insets bottom="2.0" left="5.0" right="2.0" top="2.0" />
+               </padding>
+            </Label>
+            <Label fx:id="grid21" text="30" GridPane.rowIndex="4">
+               <font>
+                  <Font size="20.0" />
+               </font>
+               <padding>
+                  <Insets bottom="2.0" left="5.0" right="2.0" top="2.0" />
+               </padding>
+            </Label>
+            <Label fx:id="grid22" text="31" GridPane.columnIndex="1" GridPane.rowIndex="4">
+               <font>
+                  <Font size="20.0" />
+               </font>
+               <padding>
+                  <Insets bottom="2.0" left="5.0" right="2.0" top="2.0" />
+               </padding>
+            </Label>
+            <Label fx:id="grid23" text="32" GridPane.columnIndex="2" GridPane.rowIndex="4">
+               <font>
+                  <Font size="20.0" />
+               </font>
+               <padding>
+                  <Insets bottom="2.0" left="5.0" right="2.0" top="2.0" />
+               </padding>
+            </Label>
+            <Label fx:id="grid24" text="33" GridPane.columnIndex="3" GridPane.rowIndex="4">
+               <font>
+                  <Font size="20.0" />
+               </font>
+               <padding>
+                  <Insets bottom="2.0" left="5.0" right="2.0" top="2.0" />
+               </padding>
+            </Label>
+            <Label fx:id="grid25" text="34" GridPane.columnIndex="4" GridPane.rowIndex="4">
+               <font>
+                  <Font size="20.0" />
+               </font>
+               <padding>
+                  <Insets bottom="2.0" left="5.0" right="2.0" top="2.0" />
+               </padding>
+            </Label>
+            <Label fx:id="grid26" text="35" GridPane.columnIndex="5" GridPane.rowIndex="4">
+               <font>
+                  <Font size="20.0" />
+               </font>
+               <padding>
+                  <Insets bottom="2.0" left="5.0" right="2.0" top="2.0" />
+               </padding>
+            </Label>
+            <Label fx:id="grid27" text="36" textFill="#4940ff" GridPane.columnIndex="6" GridPane.rowIndex="4">
+               <font>
+                  <Font size="20.0" />
+               </font>
+               <padding>
+                  <Insets bottom="2.0" left="5.0" right="2.0" top="2.0" />
+               </padding>
+            </Label>
+            <Label fx:id="grid28" text="40" GridPane.rowIndex="5">
+               <font>
+                  <Font size="20.0" />
+               </font>
+               <padding>
+                  <Insets bottom="2.0" left="5.0" right="2.0" top="2.0" />
+               </padding>
+            </Label>
+            <Label fx:id="grid29" text="41" GridPane.columnIndex="1" GridPane.rowIndex="5">
+               <font>
+                  <Font size="20.0" />
+               </font>
+               <padding>
+                  <Insets bottom="2.0" left="5.0" right="2.0" top="2.0" />
+               </padding>
+            </Label>
+            <Label fx:id="grid30" text="42" GridPane.columnIndex="2" GridPane.rowIndex="5">
+               <font>
+                  <Font size="20.0" />
+               </font>
+               <padding>
+                  <Insets bottom="2.0" left="5.0" right="2.0" top="2.0" />
+               </padding>
+            </Label>
+            <Label fx:id="grid31" text="43" GridPane.columnIndex="3" GridPane.rowIndex="5">
+               <font>
+                  <Font size="20.0" />
+               </font>
+               <padding>
+                  <Insets bottom="2.0" left="5.0" right="2.0" top="2.0" />
+               </padding>
+            </Label>
+            <Label fx:id="grid32" text="44" GridPane.columnIndex="4" GridPane.rowIndex="5">
+               <font>
+                  <Font size="20.0" />
+               </font>
+               <padding>
+                  <Insets bottom="2.0" left="5.0" right="2.0" top="2.0" />
+               </padding>
+            </Label>
+            <Label fx:id="grid33" text="45" GridPane.columnIndex="5" GridPane.rowIndex="5">
+               <font>
+                  <Font size="20.0" />
+               </font>
+               <padding>
+                  <Insets bottom="2.0" left="5.0" right="2.0" top="2.0" />
+               </padding>
+            </Label>
+            <Label fx:id="grid34" text="46" textFill="#4940ff" GridPane.columnIndex="6" GridPane.rowIndex="5">
                <font>
                   <Font size="20.0" />
                </font>
