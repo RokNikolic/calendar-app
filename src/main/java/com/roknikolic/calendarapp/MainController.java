@@ -107,6 +107,7 @@ public class MainController implements Initializable {
     private final Map<String, Integer> monthNumbers = new HashMap<>();
     private final Map<String, Integer> holidayDates = new HashMap<>();
 
+    // Constructor for UI components
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         // Create months dictionary
