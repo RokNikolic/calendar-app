@@ -4,11 +4,14 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
 
 import java.net.URL;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 public class MainController implements Initializable {
@@ -24,6 +27,8 @@ public class MainController implements Initializable {
     private TextField YearField;
     @FXML
     private Label ErrorLabel;
+    @FXML
+    private DatePicker dateJumpLabel;
     @FXML
     private Label grid0;
     @FXML
@@ -94,12 +99,13 @@ public class MainController implements Initializable {
     private Label grid33;
     @FXML
     private Label grid34;
+    // Array of all the labels in the calendar grid
     Label[] gridArray = new Label[34];
     // Month labels and lookup dict
     private final String[] months = {"January", "February", "March", "April", "May", "June",
             "July", "August", "September", "October", "November", "December"};
     private final Map<String, Integer> monthNumbers = new HashMap<>();
-    private final Map<String, Boolean> holidayDates = new HashMap<>();
+    private final Map<String, Integer> holidayDates = new HashMap<>();
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -127,7 +133,7 @@ public class MainController implements Initializable {
         MonthChoiceBox.getItems().addAll(months);
         MonthChoiceBox.setOnAction(this::getMonth);
 
-        // An array of all the grid cells
+        // Fill the array with all the grid labels
         gridArray = new Label[] {grid0, grid1, grid2, grid3, grid4, grid5, grid6,
                 grid7, grid8, grid9, grid10, grid11, grid12, grid13,
                 grid14, grid15, grid16, grid17, grid18, grid19, grid20,
@@ -136,10 +142,23 @@ public class MainController implements Initializable {
 
         // Read holidays
         String filePath = "holidays.txt";
-        List<String> lines = fileReadHelper.readAllLines(filePath);
-        for (String holiday : lines) {
-            String[] dateAndBool = holiday.split(":");
-            holidayDates.put(dateAndBool[0], Boolean.valueOf(dateAndBool[1]));
+        List<String> readLines = fileReadHelper.readAllLines(filePath);
+
+        // Make a dictionary of holidays that we can look up later, format -> {"day-month"=year}
+        for (String holiday : readLines) {
+            String[] dateAndRepeatFlag = holiday.split(":");
+            String[] dayMonthYear = dateAndRepeatFlag[0].split("-");
+            String[] dayAndMonth = Arrays.copyOfRange(dayMonthYear, 0, 2);
+
+            // The day and month of the holiday, we use this as a key
+            String shortDate = String.join("-", dayAndMonth[0], dayAndMonth[1]);
+
+            // If the repeating flag is on we set the year to null, otherwise we use the provided year
+            if (Boolean.parseBoolean(dateAndRepeatFlag[1])) {
+                holidayDates.put(shortDate, null);
+            } else {
+                holidayDates.put(shortDate, Integer.valueOf(dayMonthYear[2]));
+            }
         }
 
         // Display initial calendar
@@ -149,24 +168,31 @@ public class MainController implements Initializable {
         System.out.printf("Updating calendar to month: %d, year: %d \n", currentMonth, currentYear);
         int firstDay = calendarHelper.getFirstDayOfMonth(currentMonth, currentYear);
         int numOfDays = calendarHelper.numOfDaysInMonth(currentMonth, currentYear);
-        String stringMonth = String.valueOf(currentMonth);
-        String stringYear = String.valueOf(currentYear);
 
         // Loop over cells and fill in the ones that are needed for the current month
         for (int i = 0; i < gridArray.length; i++) {
+            // All cells are first set to blank
+            gridArray[i].setText("");
+            // We only operate on the cells that correspond to the current month
             if ((i >= firstDay) && ((i - firstDay) < numOfDays)) {
                 // Convert the loop variable to a date number
                 int dayNumber = i - (firstDay - 1);
-                // Check if any date is a holiday
-                String stringDay = String.valueOf(dayNumber);
-                String date = String.join("-", stringDay, stringMonth, stringYear);
-                //TODO
-                if (holidayDates.containsKey(date)) {
-                    gridArray[i].setTextFill(Color.color(0, 1, 0));
-                }
+                // Write numbers into labels and color them all black, special days are re-colored later
                 gridArray[i].setText(String.valueOf(dayNumber));
-            } else {
-                gridArray[i].setText("");
+                gridArray[i].setTextFill(Color.rgb(0, 0, 0));
+
+                // Check if any date of current month is a holiday
+                String keyDate = String.join("-", String.valueOf(dayNumber), String.valueOf(currentMonth));
+                Integer holidayYear = holidayDates.get(keyDate);
+
+                // If a day is a holiday and the year is repeating or current
+                if ((holidayDates.containsKey(keyDate)) && ((holidayYear == null) || (holidayYear == currentYear))) {
+                    gridArray[i].setTextFill(Color.rgb(0, 200, 0));
+                }
+                // If the day is a sunday
+                else if ((i+1) % 7 == 0) {
+                    gridArray[i].setTextFill(Color.rgb(73, 64, 255));
+                }
             }
         }
     }
@@ -188,6 +214,19 @@ public class MainController implements Initializable {
             updateCalendar();
         } catch (NumberFormatException ex) {
             ErrorLabel.setText("Please enter a valid year");
+        }
+    }
+    public void jumpToDate() {
+        // Gets chosen date and jumps to it
+        LocalDate jumpDate = dateJumpLabel.getValue();
+        if (jumpDate != null) {
+            String formattedJumpDate = jumpDate.format(DateTimeFormatter.ofPattern("dd-MM-yyyy"));
+            String[] dayMonthYear = formattedJumpDate.split("-");
+            String[] monthAndYear= Arrays.copyOfRange(dayMonthYear, 1, 3);
+            // Set both new month and year
+            currentMonth = Integer.parseInt(monthAndYear[0]);
+            currentYear = Integer.parseInt(monthAndYear[1]);
+            updateCalendar();
         }
     }
 }
